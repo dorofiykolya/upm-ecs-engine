@@ -46,7 +46,7 @@ namespace Battle.Engine
         {
             Configuration = configuration;
 
-            _externalProvider = externalProvider;
+            ExternalResolver = _externalProvider = externalProvider;
             _seed = configuration.RandomSeed;
             _playedInputs = new Queue<Input>();
             _outputs = new EngineOutputs();
@@ -77,6 +77,7 @@ namespace Battle.Engine
             FastForward(nextTick);
         }
 
+        public IExternalResolver ExternalResolver { get; }
         public TConfiguration Configuration { get; }
         public sealed override EngineEnvironment Environment => Configuration.Environment;
         public sealed override IEngineOutputs Outputs => _outputs;
